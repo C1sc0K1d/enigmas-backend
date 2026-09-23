@@ -11,8 +11,8 @@
 	<groupId>br.com.enigmas</groupId>
 	<artifactId>enigmas-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>enigmas-backend</name>
+	<description>REST API for the Enigmas project, built with Java, Spring Boot, and PostgreSQL.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -67,6 +67,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
