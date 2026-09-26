@@ -1,0 +1,332 @@
+[
+  {
+    "id": "inno_m1nvl",
+    "name": "inno_m1nvl",
+    "location": "ESTAÇÃO 01",
+    "serial": "PRS-001",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Aqui, ninguém precisa ser quem é.\nUm rei pode nascer sem coroa.\nUm morto pode falar.\nUm estranho pode receber seu nome.\n\nA mentira só precisa durar enquanto houver olhos sobre ela.",
+      "answer": "PALCO",
+      "route": ["h_colinas", "inno_m1nvl"],
+      "successMessage": "O papel estava vazio. Agora ele pertence a você."
+    },
+    "awakePhrases": [
+      "A plateia foi embora. Ainda sinto os olhos atrás das cortinas.",
+      "Há um papel reservado para você desde antes do seu nascimento.",
+      "O tecido desbotou. A mancha por baixo continua crescendo.",
+      "Alguém pronunciou uma sílaba a mais. Desde então, o quarto parece ocupado.",
+      "Reconheci minha assinatura numa carta que ninguém teve coragem de terminar."
+    ],
+    "cipher": "decodeMask",
+    "trancePhrases": [
+      "Você fala como se essas palavras fossem realmente suas.",
+      "Já pensou que talvez esteja apenas repetindo uma fala que alguém escreveu antes de você chegar?",
+      "Não se preocupe. Todos parecem convincentes quando acreditam no próprio papel.",
+      "Você gostaria de saber quem está observando? Eu me preocuparia mais com quem decidiu sua parte.",
+      "Algumas mentiras só precisam durar até as luzes se apagarem.",
+      "Continue. A apresentação fica muito melhor quando os participantes esquecem que estão representando."
+    ]
+  },
+  {
+    "id": "sultao_d",
+    "name": "sultao_d",
+    "location": "ESTAÇÃO 02",
+    "serial": "PRS-002",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Sou um lugar que nunca existiu,\nmas nele já caminhastes.\n\nPosso durar anos sem consumir uma hora,\nposso mostrar mortos sem devolvê-los à vida.\n\nConstruo cidades que ninguém ergueu,\nentrego lembranças de coisas que jamais aconteceram.\n\nEnquanto permaneço, minhas mentiras são verdade.\nQuando termino, até minhas verdades desaparecem.\n\nNão posso ser levado comigo,\nembora às vezes reste algo de mim.",
+      "answer": "SONHO",
+      "route": [
+        "chma_vva",
+        "sr_grdabs",
+        "h_colinas",
+        "inno_m1nvl",
+        "tec_la",
+        "fnt_primdal",
+        "nkai_a",
+        "grd_s0nhadr",
+        "caosra_st",
+        "sultao_d"
+      ],
+      "revealRouteOnLocalAnswer": true,
+      "successMessage": "A primeira mentira foi aceita.\nAquilo que não existe agora conhece teu nome.\nNão desperte ainda."
+    },
+    "awakePhrases": [
+      "O ruído continua, mesmo quando já não há ninguém tocando.",
+      "Tudo gira em torno de um lugar que nunca percebeu vocês.",
+      "Há um compasso aqui. Contar não ajuda a encontrá-lo.",
+      "Nenhuma vontade move o centro. As bordas obedecem mesmo assim.",
+      "Entre duas notas, a distância esqueceu quanto devia medir."
+    ],
+    "cipher": "decodeChaoticCore",
+    "trancePhrases": [
+      "Você espera que isso faça sentido?",
+      "Há momentos em que sua mente inventa ordem apenas para não admitir que não encontrou nenhuma.",
+      "Você já esteve em um lugar que parecia completamente real até abrir os olhos?",
+      "Talvez aquilo que chama de realidade seja apenas a parte da experiência que consegue lembrar.",
+      "Continue falando. Enquanto houver alguém para imaginar a conversa, talvez ela ainda esteja acontecendo.",
+      "Quando tudo desaparecer, você terá certeza de que foi você quem acordou?"
+    ]
+  },
+  {
+    "id": "tec_la",
+    "name": "tec_la",
+    "location": "ESTAÇÃO 03",
+    "serial": "PRS-003",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": "chma_vva",
+    "outputTo": "fnt_primdal",
+    "context": {
+      "riddle": "Partem separados.\nAlguns seguem retos, outros retornam.\nPodem nascer distantes e jamais conhecer a origem uns dos outros.\n\nAinda assim, para continuar, todos entregam parte de seu caminho ao mesmo lugar.\n\nNão procure o início.\nNão procure o fim.\nNomeie aquilo que inevitavelmente existe quando caminhos diferentes precisam se tornar um só.",
+      "answer": "TODO FIO ENCONTRA O MESMO NÓ",
+      "route": ["sr_grdabs", "tec_la"],
+      "successMessage": "O nó foi fechado.\nO caminho que entrou já não é o caminho que sai."
+    },
+    "awakePhrases": [
+      "Nenhum fio é criado. Nenhum fio é perdido. Apenas o caminho muda.",
+      "A outra margem se afasta a cada ponto que termino.",
+      "Senti seus passos muito antes de vocês chegarem.",
+      "O vazio suporta meu trabalho. Ainda não suporta o peso de vocês.",
+      "Nunca vi o fundo. Conheço cada tensão sobre ele.",
+      "Quando a última passagem estiver pronta, talvez não reste ninguém para atravessar."
+    ],
+    "cipher": "weaveText",
+    "trancePhrases": [
+      "Você fala como se seu caminho fosse apenas seu.",
+      "Quantas decisões precisaram acontecer para que você chegasse exatamente aqui?",
+      "Vocês gostam de imaginar caminhos separados. De longe, quase parecem ser.",
+      "Você já encontrou alguém por acaso? Gosto dessa palavra: acaso.",
+      "Continue seguindo o seu caminho. Não precisa saber com quais outros ele irá se encontrar.",
+      "Algumas coisas parecem distantes apenas porque você ainda não viu onde se tocam."
+    ]
+  },
+  {
+    "id": "nkai_a",
+    "name": "nkai_a",
+    "location": "ESTAÇÃO 04",
+    "serial": "PRS-004",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Não persigo aquilo que desejo.\n\nNão preciso conhecer o caminho por onde virá.\n\nO tempo que faria outros desistirem apenas trabalha a meu favor.\n\nPosso permanecer imóvel enquanto distâncias desaparecem, decisões são tomadas e erros são cometidos.\n\nNo fim, aquilo que procuro aproxima-se por vontade própria.\n\nComplete a verdade:",
+      "answer": "A FOME SABE ESPERAR",
+      "route": ["chma_vva", "h_colinas", "tec_la", "nkai_a"],
+      "successMessage": "Você não encontrou o caminho até ele. Apenas chegou onde ele sempre esperou."
+    },
+    "awakePhrases": [
+      "O que vocês chamam de séculos mal interrompe meu repouso.",
+      "Alguma coisa sem contorno trouxe alimento outra vez.",
+      "A pedra esfriou ao meu redor. Não encontrei motivo para me mover.",
+      "Ouço a fome chegar antes dos passos.",
+      "Os que me servem passam por frestas menores que suas sombras."
+    ],
+    "cipher": "encodeSleeper",
+    "trancePhrases": [
+      "Você parece com pressa. Eu nunca entendi a necessidade.",
+      "Se algo realmente vale a pena, por que persegui-lo?",
+      "O tempo costuma trazer muitas coisas até aqueles que sabem permanecer.",
+      "Você continuou vindo até aqui por vontade própria. Isso é bastante conveniente.",
+      "Há quem confunda movimento com vantagem.",
+      "Não se preocupe comigo. Posso continuar aqui por muito mais tempo do que você."
+    ]
+  },
+  {
+    "id": "grd_s0nhadr",
+    "name": "grd_s0nhadr",
+    "location": "ESTAÇÃO 05",
+    "serial": "PRS-005",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Não possui voz, mas pode ser ouvido.\n\nNão conhece distância, mas encontra quem está longe.\n\nAlguns o percebem enquanto dormem.\nOutros passam anos tentando esquecer que um dia o escutaram.\n\nEle não ordena que você venha.\nAinda assim, alguns seguem sua direção",
+      "answer": "CHAMADO",
+      "route": [
+        "h_colinas",
+        "inno_m1nvl",
+        "sr_grdabs",
+        "tec_la",
+        "grd_s0nhadr"
+      ],
+      "successMessage": "Ele não chamou por você. Você apenas conseguiu ouvir."
+    },
+    "awakePhrases": [
+      "A pressão sobre a pedra não alcança o que penso.",
+      "Vocês desenham durante o sono lugares que ainda não visitaram.",
+      "Uma escada desce por dentro do mesmo degrau.",
+      "O sal chegou antes dos nomes. Continuará aqui depois deles.",
+      "Às vezes, uma cidade inteira respira no intervalo entre duas ondas."
+    ],
+    "cipher": "encodeDeepMist",
+    "trancePhrases": [
+      "Você escreveu esperando uma resposta. Talvez já estivesse respondendo antes disso.",
+      "Alguma vez acordou com a certeza de ter ouvido algo que não consegue recordar?",
+      "Distância é uma coisa curiosa. Principalmente quando não é necessário atravessá-la.",
+      "Você procura a origem. Tem certeza de que aquilo que ouviu veio de fora?",
+      "Nem tudo que chama conhece o nome daquele que escuta.",
+      "Agora que está prestando atenção, talvez perceba que nunca houve silêncio."
+    ]
+  },
+  {
+    "id": "chma_vva",
+    "name": "chma_vva",
+    "location": "ESTAÇÃO 06",
+    "serial": "PRS-006",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": "tec_la",
+    "context": {
+      "riddle": "Quanto mais recebe, menos resta ao seu redor.\n\nNada daquilo que toca permanece exatamente como era.\n\nPode começar menor que um dedo e terminar maior que uma casa.\n\nEnquanto encontra alimento, cresce.\nQuando nada mais lhe é oferecido, desaparece.\n\nComplete a sentença que governa este lugar:",
+      "answer": "A LUZ TAMBÉM DEVORA",
+      "route": ["chma_vva"],
+      "successMessage": "Aquilo que iluminou seu caminho também aprendeu a consumi-lo."
+    },
+    "awakePhrases": [
+      "Cada ponto daquela luz se move como se estivesse com fome.",
+      "A madeira acabou. O clarão ainda procurava alguma coisa.",
+      "Guardo o calor de lugares que o céu já esqueceu.",
+      "As pequenas luzes se reuniram antes que alguém sentisse o cheiro.",
+      "Restou uma sombra na parede. O corpo virou brilho."
+    ],
+    "cipher": "encodeVoraciousFlame",
+    "trancePhrases": [
+      "Foi isso que escolheu dizer? Curioso. Vocês sempre confiam tanto naquilo que conseguem enxergar.",
+      "Você procura segurança onde há claridade. Nunca se perguntou por que deveria confiar nela?",
+      "A escuridão assusta vocês. Talvez porque ainda não descobriram o preço de mantê-la afastada.",
+      "Aproxime-se mais. É sempre assim que começa.",
+      "Há coisas que aquecem. Há coisas que iluminam. Vocês demoram demais para perceber quando começam a fazer outra coisa.",
+      "Continue alimentando aquilo que o ajuda a enxergar. Tenho curiosidade para saber quanto tempo levará até perceber."
+    ]
+  },
+  {
+    "id": "h_colinas",
+    "name": "h_colinas",
+    "location": "ESTAÇÃO 07",
+    "serial": "PRS-007",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Posso crescer sem ganhar matéria.\n\nPosso ocupar uma parede inteira sem possuir espessura.\n\nQuando aquilo que me origina muda de posição, minha forma também muda, embora minha origem permaneça a mesma.\n\nPosso parecer maior, menor ou deformada sem que aquilo que me produz tenha sofrido qualquer alteração.\n\nAquilo que você vê é apenas uma parte do que existe.",
+      "answer": "PROJEÇÃO",
+      "route": ["chma_vva", "h_colinas"],
+      "successMessage": "Você reconheceu a forma. Mas ainda não viu aquilo que a projeta."
+    },
+    "awakePhrases": [
+      "Mudaram meu pedestal de lugar. Agora durmo mais perto de vocês.",
+      "O vigia envelheceu muito durante uma única ronda.",
+      "Pela manhã, mediram outra vez a distância entre a estátua e a porta.",
+      "A pedra guarda um calor que não veio do sol.",
+      "Trouxeram oferendas secas. Minha sede permaneceu."
+    ],
+    "cipher": "encodeImpossibleForm",
+    "trancePhrases": [
+      "Você parece muito seguro daquilo que está vendo.",
+      "Se eu estivesse diante de você agora, teria certeza de que meus olhos mostrariam tudo?",
+      "Vocês dão nomes às formas e depois passam a acreditar que elas são completas.",
+      "Mude de lugar. Talvez aquilo que parece impossível apenas esteja sendo observado do lado errado.",
+      "Uma sombra pode ser pequena enquanto aquilo que a produz é enorme. Você confiaria na sombra?",
+      "Continue olhando. Talvez veja algo diferente. Talvez seja exatamente a mesma coisa."
+    ]
+  },
+  {
+    "id": "caosra_st",
+    "name": "caosra_st",
+    "location": "ESTAÇÃO 08",
+    "serial": "PRS-008",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Pode dizer apenas verdades e ainda levá-lo ao lugar errado.\n\nPrecisa parecer seguro antes que alguém aceite segui-lo.\n\nQuando finalmente é percebido, muitas vezes já cumpriu sua função.\n\nSua força não está em esconder o caminho.\n\nEstá em fazê-lo acreditar que escolheu corretamente.\n\nNomeie aquilo que transforma confiança em erro.",
+      "answer": "ENGANO",
+      "route": ["h_colinas", "tec_la", "caosra_st"],
+      "successMessage": "Você chegou exatamente onde deveria. A dúvida é, segundo quem?"
+    },
+    "awakePhrases": [
+      "Já conversamos. Naquela ocasião, minha voz era outra.",
+      "A demonstração terminou quando a plateia começou a entender.",
+      "Trouxe a notícia pessoalmente. Queria observar seus rostos.",
+      "Vocês chamaram de invenção aquilo que eu apenas descobri como mostrar.",
+      "Posso parecer confiável pelo tempo que for necessário.",
+      "Siga em frente. Ignore o primeiro. Tome o segundo. Continue de onde ele desapareceu."
+    ],
+    "cipher": "encodeCrawlingChaos",
+    "trancePhrases": [
+      "Boa escolha de palavras. Foi você quem escolheu, não foi?",
+      "Eu poderia mentir para você. Seria muito menos interessante.",
+      "A verdade funciona perfeitamente bem quando apresentada na direção correta.",
+      "Continue. Gosto de pessoas que sabem exatamente para onde estão indo.",
+      "Você desconfia de mim agora. Que pena. Há pouco parecia tão confiante.",
+      "Não precisa esconder um destino de alguém que acredita ter escolhido o caminho."
+    ]
+  },
+  {
+    "id": "sr_grdabs",
+    "name": "sr_grdabs",
+    "location": "ESTAÇÃO 09",
+    "serial": "PRS-009",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Não sou a origem.\n\nTambém não sou o destino.\n\nSó existo quando um já foi deixado para trás, mas o outro ainda não foi alcançado.\n\nPosso durar um passo ou uma vida inteira.\n\nO vazio não desaparece por minha causa.\n\nApenas deixa de impedir.\n\nNomeie o que existe entre partir e chegar.",
+      "answer": "TRAVESSIA",
+      "route": ["inno_m1nvl", "chma_vva", "sr_grdabs"],
+      "successMessage": "O abismo não foi vencido. Algo apenas concordou em carregá-lo."
+    },
+    "awakePhrases": [
+      "A caçada continua além do último lugar que vocês conseguem sonhar.",
+      "Meus batedores voltaram em silêncio. Nunca precisaram de voz.",
+      "Algo os seguia. Agora segue outra coisa.",
+      "Reconheço esse rastro, mesmo onde não existe chão.",
+      "Hoje vocês saíram vivos. Isso basta para esta noite."
+    ],
+    "cipher": "encodeAbyssCarriers",
+    "trancePhrases": [
+      "Você quer chegar a algum lugar. Isso já significa que deixou outro para trás.",
+      "Não tema tanto o vazio. Às vezes ele é apenas aquilo que existe entre dois lugares.",
+      "Você chama de distância porque ainda acredita que partir e chegar são acontecimentos separados.",
+      "Há caminhos que não precisam de chão.",
+      "Se continuar avançando, chegará a algum lugar. A questão é o que terá atravessado até lá.",
+      "Interessante. Você se preocupa muito com o destino e muito pouco com aquilo que existe entre ele e você."
+    ]
+  },
+  {
+    "id": "fnt_primdal",
+    "name": "fnt_primdal",
+    "location": "ESTAÇÃO 10",
+    "serial": "PRS-010",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": "tec_la",
+    "outputTo": null,
+    "context": {
+      "riddle": "Pode-se partir tão longe que o início deixa de ter nome.\n\nA forma muda.\nA memória desaparece.\nAquilo que veio depois passa a acreditar que sempre existiu assim.\n\nMas seguir para trás o bastante não leva a um lugar novo.\n\nLeva ao ponto anterior a todas as diferenças.\n\nNomeie aquilo que termina exatamente onde começou.",
+      "answer": "RETORNO",
+      "route": ["chma_vva", "tec_la", "fnt_primdal"],
+      "successMessage": "Você chamou isso de chegada. Aqui, chamam de retorno."
+    },
+    "awakePhrases": [
+      "Esse rosto já passou por mim. Ainda não tinha olhos.",
+      "A lama se contrai, ensaiando formas que vocês chamariam de vida.",
+      "Cada corpo leva consigo uma pequena parte do que deixou aqui.",
+      "As pedras guardam registros de antes de existir alguém para lê-los.",
+      "Quanto mais longe a lembrança recua, menos diferença existe entre nós."
+    ],
+    "cipher": "encodePrimordialSource",
+    "trancePhrases": [
+      "Você se lembra do começo? Não do seu. Antes disso.",
+      "Tudo parece novo quando se esquece de onde veio.",
+      "Vocês têm uma obsessão curiosa por avançar. Como se ir adiante impedisse alguma coisa de voltar.",
+      "Quantas mudanças seriam necessárias para que você deixasse de reconhecer aquilo que já foi?",
+      "Talvez o fim seja apenas o nome que vocês dão ao momento em que reconhecem o começo novamente.",
+      "Continue. Quanto mais longe for, mais interessante será vê-lo descobrir para onde estava indo."
+    ]
+  }
+]
