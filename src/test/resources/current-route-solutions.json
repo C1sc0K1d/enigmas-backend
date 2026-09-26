@@ -1,0 +1,73 @@
+[
+  {
+    "id": "inno_m1nvl",
+    "route": ["h_colinas", "inno_m1nvl"],
+    "input": "QWXDEKDJNT",
+    "answer": "PALCO"
+  },
+  {
+    "id": "sultao_d",
+    "route": [
+      "chma_vva",
+      "sr_grdabs",
+      "h_colinas",
+      "inno_m1nvl",
+      "tec_la",
+      "fnt_primdal",
+      "nkai_a",
+      "grd_s0nhadr",
+      "caosra_st",
+      "sultao_d"
+    ],
+    "input": "UUVVVUUUUHHUUUZZZZUUBBBUUUUTTUUUHHHHUUGGG",
+    "answer": "SONHO"
+  },
+  {
+    "id": "tec_la",
+    "route": ["sr_grdabs", "tec_la"],
+    "input": "FTBOC AO HMKSQEL  QEM CCXOUN",
+    "answer": "TODO FIO ENCONTRA O MESMO NÓ"
+  },
+  {
+    "id": "nkai_a",
+    "route": ["chma_vva", "h_colinas", "tec_la", "nkai_a"],
+    "input": "XXFFF    EEAAARRRRDDYYYEEEEHHYYYRRRR  EEEAAAA  QQQRRRROO",
+    "answer": "A FOME SABE ESPERAR"
+  },
+  {
+    "id": "grd_s0nhadr",
+    "route": ["h_colinas", "inno_m1nvl", "sr_grdabs", "tec_la", "grd_s0nhadr"],
+    "input": "ZFKQXDAGDJOUSY",
+    "answer": "CHAMADO"
+  },
+  {
+    "id": "chma_vva",
+    "route": ["chma_vva"],
+    "input": "AA   LLLLUUZZZ    TTAAAMMMMBBEEEMMMM  DDDEEEEVVOOORRRRAA",
+    "answer": "A LUZ TAMBÉM DEVORA"
+  },
+  {
+    "id": "h_colinas",
+    "route": ["chma_vva", "h_colinas"],
+    "input": "TTZZZQQQQBBMMMGGGGAAQQQ",
+    "answer": "PROJEÇÃO"
+  },
+  {
+    "id": "caosra_st",
+    "route": ["h_colinas", "tec_la", "caosra_st"],
+    "input": "NSMQAN",
+    "answer": "ENGANO"
+  },
+  {
+    "id": "sr_grdabs",
+    "route": ["inno_m1nvl", "chma_vva", "sr_grdabs"],
+    "input": "BDBDSUSUSUEGEGEGEGZBZBLNLNLNDFDFDFDFJLJLRTRTRTYAYAYAYA",
+    "answer": "TRAVESSIA"
+  },
+  {
+    "id": "fnt_primdal",
+    "route": ["chma_vva", "tec_la", "fnt_primdal"],
+    "input": "RRXXXIIIIZZNNNRRRRXX",
+    "answer": "RETORNO"
+  }
+]

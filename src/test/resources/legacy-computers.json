@@ -1,0 +1,248 @@
+[
+  {
+    "id": "inno_m1nvl",
+    "name": "inno_m1nvl",
+    "location": "ESTAÇÃO 01",
+    "serial": "PRS-001",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Aqui, ninguém precisa ser quem é.\nUm rei pode nascer sem coroa.\nUm morto pode falar.\nUm estranho pode receber seu nome.\n\nA mentira só precisa durar enquanto houver olhos sobre ela.",
+      "answer": "PALCO",
+      "route": ["sr_grdabs", "tec_la", "inno_m1nvl"],
+      "successMessage": "O papel estava vazio. Agora ele pertence a você."
+    },
+    "awakePhrases": [
+      "A plateia foi embora. Ainda sinto os olhos atrás das cortinas.",
+      "Há um papel reservado para você desde antes do seu nascimento.",
+      "O tecido desbotou. A mancha por baixo continua crescendo.",
+      "Alguém pronunciou uma sílaba a mais. Desde então, o quarto parece ocupado.",
+      "Reconheci minha assinatura numa carta que ninguém teve coragem de terminar."
+    ],
+    "cipher": "decodeMask"
+  },
+  {
+    "id": "sultao_d",
+    "name": "sultao_d",
+    "location": "ESTAÇÃO 02",
+    "serial": "PRS-002",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Sou um lugar que nunca existiu,\nmas nele já caminhastes.\n\nPosso durar anos sem consumir uma hora,\nposso mostrar mortos sem devolvê-los à vida.\n\nConstruo cidades que ninguém ergueu,\nentrego lembranças de coisas que jamais aconteceram.\n\nEnquanto permaneço, minhas mentiras são verdade.\nQuando termino, até minhas verdades desaparecem.\n\nNão posso ser levado comigo,\nembora às vezes reste algo de mim.",
+      "answer": "SONHO",
+      "route": [
+        "chma_vva",
+        "tec_la",
+        "fnt_primdal",
+        "nkai_a",
+        "h_colinas",
+        "sr_grdabs",
+        "inno_m1nvl",
+        "grd_s0nhadr",
+        "caosra_st",
+        "sultao_d"
+      ],
+      "revealRouteOnLocalAnswer": true,
+      "successMessage": "A primeira mentira foi aceita.\nAquilo que não existe agora conhece teu nome.\nNão desperte ainda."
+    },
+    "awakePhrases": [
+      "O ruído continua, mesmo quando já não há ninguém tocando.",
+      "Tudo gira em torno de um lugar que nunca percebeu vocês.",
+      "Há um compasso aqui. Contar não ajuda a encontrá-lo.",
+      "Nenhuma vontade move o centro. As bordas obedecem mesmo assim.",
+      "Entre duas notas, a distância esqueceu quanto devia medir."
+    ],
+    "cipher": "decodeChaoticCore"
+  },
+  {
+    "id": "tec_la",
+    "name": "tec_la",
+    "location": "ESTAÇÃO 03",
+    "serial": "PRS-003",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": "chma_vva",
+    "outputTo": "fnt_primdal",
+    "context": {
+      "riddle": "Partem separados.\nAlguns seguem retos, outros retornam.\nPodem nascer distantes e jamais conhecer a origem uns dos outros.\n\nAinda assim, para continuar, todos entregam parte de seu caminho ao mesmo lugar.\n\nNão procure o início.\nNão procure o fim.\nNomeie aquilo que inevitavelmente existe quando caminhos diferentes precisam se tornar um só.",
+      "answer": "TODO FIO ENCONTRA O MESMO NÓ",
+      "route": ["chma_vva", "tec_la"],
+      "successMessage": "O nó foi fechado.\nO caminho que entrou já não é o caminho que sai."
+    },
+    "awakePhrases": [
+      "Nenhum fio é criado. Nenhum fio é perdido. Apenas o caminho muda.",
+      "A outra margem se afasta a cada ponto que termino.",
+      "Senti seus passos muito antes de vocês chegarem.",
+      "O vazio suporta meu trabalho. Ainda não suporta o peso de vocês.",
+      "Nunca vi o fundo. Conheço cada tensão sobre ele.",
+      "Quando a última passagem estiver pronta, talvez não reste ninguém para atravessar."
+    ],
+    "cipher": "weaveText"
+  },
+  {
+    "id": "nkai_a",
+    "name": "nkai_a",
+    "location": "ESTAÇÃO 04",
+    "serial": "PRS-004",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Não persigo aquilo que desejo.\n\nNão preciso conhecer o caminho por onde virá.\n\nO tempo que faria outros desistirem apenas trabalha a meu favor.\n\nPosso permanecer imóvel enquanto distâncias desaparecem, decisões são tomadas e erros são cometidos.\n\nNo fim, aquilo que procuro aproxima-se por vontade própria.\n\nComplete a verdade:",
+      "answer": "A FOME SABE ESPERAR",
+      "route": ["chma_vva", "h_colinas", "inno_m1nvl", "tec_la", "nkai_a"],
+      "successMessage": "Você não encontrou o caminho até ele. Apenas chegou onde ele sempre esperou."
+    },
+    "awakePhrases": [
+      "O que vocês chamam de séculos mal interrompe meu repouso.",
+      "Alguma coisa sem contorno trouxe alimento outra vez.",
+      "A pedra esfriou ao meu redor. Não encontrei motivo para me mover.",
+      "Ouço a fome chegar antes dos passos.",
+      "Os que me servem passam por frestas menores que suas sombras."
+    ],
+    "cipher": "encodeSleeper"
+  },
+  {
+    "id": "grd_s0nhadr",
+    "name": "grd_s0nhadr",
+    "location": "ESTAÇÃO 05",
+    "serial": "PRS-005",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Não possui voz, mas pode ser ouvido.\n\nNão conhece distância, mas encontra quem está longe.\n\nAlguns o percebem enquanto dormem.\nOutros passam anos tentando esquecer que um dia o escutaram.\n\nEle não ordena que você venha.\nAinda assim, alguns seguem sua direção",
+      "answer": "CHAMADO",
+      "route": [
+        "chma_vva",
+        "h_colinas",
+        "inno_m1nvl",
+        "sr_grdabs",
+        "tec_la",
+        "grd_s0nhadr"
+      ],
+      "successMessage": "Ele não chamou por você. Você apenas conseguiu ouvir."
+    },
+    "awakePhrases": [
+      "A pressão sobre a pedra não alcança o que penso.",
+      "Vocês desenham durante o sono lugares que ainda não visitaram.",
+      "Uma escada desce por dentro do mesmo degrau.",
+      "O sal chegou antes dos nomes. Continuará aqui depois deles.",
+      "Às vezes, uma cidade inteira respira no intervalo entre duas ondas."
+    ],
+    "cipher": "encodeDeepMist"
+  },
+  {
+    "id": "chma_vva",
+    "name": "chma_vva",
+    "location": "ESTAÇÃO 06",
+    "serial": "PRS-006",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": "tec_la",
+    "context": {
+      "riddle": "Quanto mais recebe, menos resta ao seu redor.\n\nNada daquilo que toca permanece exatamente como era.\n\nPode começar menor que um dedo e terminar maior que uma casa.\n\nEnquanto encontra alimento, cresce.\nQuando nada mais lhe é oferecido, desaparece.\n\nComplete a sentença que governa este lugar:",
+      "answer": "A LUZ TAMBÉM DEVORA",
+      "route": ["chma_vva"],
+      "successMessage": "Aquilo que iluminou seu caminho também aprendeu a consumi-lo."
+    },
+    "awakePhrases": [
+      "Cada ponto daquela luz se move como se estivesse com fome.",
+      "A madeira acabou. O clarão ainda procurava alguma coisa.",
+      "Guardo o calor de lugares que o céu já esqueceu.",
+      "As pequenas luzes se reuniram antes que alguém sentisse o cheiro.",
+      "Restou uma sombra na parede. O corpo virou brilho."
+    ],
+    "cipher": "encodeVoraciousFlame"
+  },
+  {
+    "id": "h_colinas",
+    "name": "h_colinas",
+    "location": "ESTAÇÃO 07",
+    "serial": "PRS-007",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Sou um gigante de pedra. Meu pé toca a terra e meu cume encontra as nuvens. O que sou?",
+      "answer": "montanha",
+      "route": ["nkai_a", "tec_la", "chma_vva", "h_colinas"]
+    },
+    "awakePhrases": [
+      "Mudaram meu pedestal de lugar. Agora durmo mais perto de vocês.",
+      "O vigia envelheceu muito durante uma única ronda.",
+      "Pela manhã, mediram outra vez a distância entre a estátua e a porta.",
+      "A pedra guarda um calor que não veio do sol.",
+      "Trouxeram oferendas secas. Minha sede permaneceu."
+    ],
+    "cipher": "encodeCaesar"
+  },
+  {
+    "id": "caosra_st",
+    "name": "caosra_st",
+    "location": "ESTAÇÃO 08",
+    "serial": "PRS-008",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Quando a razão perde o trono, faço do absurdo uma lei. Meu nome tem sete letras e começa onde a lógica termina. O que sou?",
+      "answer": "loucura",
+      "route": ["inno_m1nvl", "tec_la", "grd_s0nhadr", "caosra_st"]
+    },
+    "awakePhrases": [
+      "Já conversamos. Naquela ocasião, minha voz era outra.",
+      "A demonstração terminou quando a plateia começou a entender.",
+      "Trouxe a notícia pessoalmente. Queria observar seus rostos.",
+      "Vocês chamaram de invenção aquilo que eu apenas descobri como mostrar.",
+      "Posso parecer confiável pelo tempo que for necessário."
+    ],
+    "cipher": "encodeCaesar"
+  },
+  {
+    "id": "sr_grdabs",
+    "name": "sr_grdabs",
+    "location": "ESTAÇÃO 09",
+    "serial": "PRS-009",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": null,
+    "outputTo": null,
+    "context": {
+      "riddle": "Não sou uma porta, mas decido se ela se abre. Vigio a passagem e impeço quem não pode entrar. Quem sou?",
+      "answer": "guardiao",
+      "route": ["chma_vva", "tec_la", "h_colinas", "sr_grdabs"]
+    },
+    "awakePhrases": [
+      "A caçada continua além do último lugar que vocês conseguem sonhar.",
+      "Meus batedores voltaram em silêncio. Nunca precisaram de voz.",
+      "Algo os seguia. Agora segue outra coisa.",
+      "Reconheço esse rastro, mesmo onde não existe chão.",
+      "Hoje vocês saíram vivos. Isso basta para esta noite."
+    ],
+    "cipher": "encodeCaesar"
+  },
+  {
+    "id": "fnt_primdal",
+    "name": "fnt_primdal",
+    "location": "ESTAÇÃO 10",
+    "serial": "PRS-010",
+    "welcome": "Há algo do outro lado da tela.",
+    "inputFrom": "tec_la",
+    "outputTo": null,
+    "context": {
+      "riddle": "Sou o primeiro ponto de toda história. Tudo que existe veio depois de mim. O que sou?",
+      "answer": "origem",
+      "route": ["h_colinas", "tec_la", "sr_grdabs", "fnt_primdal"]
+    },
+    "awakePhrases": [
+      "Esse rosto já passou por mim. Ainda não tinha olhos.",
+      "A lama se contrai, ensaiando formas que vocês chamariam de vida.",
+      "Cada corpo leva consigo uma pequena parte do que deixou aqui.",
+      "As pedras guardam registros de antes de existir alguém para lê-los.",
+      "Quanto mais longe a lembrança recua, menos diferença existe entre nós."
+    ],
+    "cipher": "encodeCaesar"
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "cipher": "decodeMask",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "decodeMask",
+    "input": "abc XYZ!",
+    "output": "     !"
+  },
+  {
+    "cipher": "decodeMask",
+    "input": "  RT  PO ",
+    "output": "  S  B "
+  },
+  {
+    "cipher": "decodeMask",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀  \n "
+  },
+  {
+    "cipher": "decodeMask",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "                          "
+  },
+  {
+    "cipher": "decodeMask",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "             M  "
+  },
+  {
+    "cipher": "decodeMask",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀 😀 😀   \t"
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "abc XYZ!",
+    "output": "zy SX!"
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "  RT  PO ",
+    "output": "  S  L"
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Áá Ω😀ZW"
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "zyydccihhmllrqqvuuAZZEDDJIINMMSRRWV"
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "z  z vzx vaX u"
+  },
+  {
+    "cipher": "decodeChaoticCore",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀wv😀u "
+  },
+  {
+    "cipher": "weaveText",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "weaveText",
+    "input": "abc XYZ!",
+    "output": "acXZ!Y b"
+  },
+  {
+    "cipher": "weaveText",
+    "input": "  RT  PO ",
+    "output": " R P O T "
+  },
+  {
+    "cipher": "weaveText",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "ÁéΩ \nZA😀 á"
+  },
+  {
+    "cipher": "weaveText",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "acegikmoqsuwyACEGIKMOQSUWYZXVTRPNLJHFDBzxvtrpnljhfdb"
+  },
+  {
+    "cipher": "weaveText",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "abca a bA azZ aaaa   "
+  },
+  {
+    "cipher": "weaveText",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀😀😀 \t zyx"
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "abc XYZ!",
+    "output": "efd BCA!"
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "  RT  PO ",
+    "output": "  VT  QR "
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀 B\nA"
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "bcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZa"
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "b c d cc ddd dc BC cb"
+  },
+  {
+    "cipher": "encodeSleeper",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀y😀z😀a  \t"
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "abc XYZ!",
+    "output": "fdb CAY!"
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "  RT  PO ",
+    "output": "  VS  QQ "
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀 B\nA"
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "ZXVTRPNLJHFDBZXVTRPNLJHFDBzxvtrpnljhfdbzxvtrpnljhfdb"
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "b c d cb dcb db BB ca"
+  },
+  {
+    "cipher": "encodeDeepMist",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀y😀z😀a  \t"
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "abc XYZ!",
+    "output": "acY"
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "  RT  PO ",
+    "output": " R "
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Áé😀Z"
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "acfjlosuxBDGKMPTVY"
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "ab aab a"
+  },
+  {
+    "cipher": "encodeVoraciousFlame",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀😀z"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abc XYZ!",
+    "output": "def ABC!"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "  RT  PO ",
+    "output": "  UW  SR "
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀 D\nC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "defghijklmnopqrstuvwxyzabcDEFGHIJKLMNOPQRSTUVWXYZABC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "d e f dd ddd de DC cd"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀a😀b😀c  \t"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abc XYZ!",
+    "output": "def ABC!"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "  RT  PO ",
+    "output": "  UW  SR "
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀 D\nC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "defghijklmnopqrstuvwxyzabcDEFGHIJKLMNOPQRSTUVWXYZABC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "d e f dd ddd de DC cd"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀a😀b😀c  \t"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abc XYZ!",
+    "output": "def ABC!"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "  RT  PO ",
+    "output": "  UW  SR "
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀 D\nC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "defghijklmnopqrstuvwxyzabcDEFGHIJKLMNOPQRSTUVWXYZABC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "d e f dd ddd de DC cd"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀a😀b😀c  \t"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "",
+    "output": ""
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abc XYZ!",
+    "output": "def ABC!"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "  RT  PO ",
+    "output": "  UW  SR "
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "Ááé Ω😀 A\nZ",
+    "output": "Ááé Ω😀 D\nC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "output": "defghijklmnopqrstuvwxyzabcDEFGHIJKLMNOPQRSTUVWXYZABC"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "a b c aa aaa ab AZ za",
+    "output": "d e f dd ddd de DC cd"
+  },
+  {
+    "cipher": "encodeCaesar",
+    "input": "😀x😀y😀z  \t",
+    "output": "😀a😀b😀c  \t"
+  }
+]
