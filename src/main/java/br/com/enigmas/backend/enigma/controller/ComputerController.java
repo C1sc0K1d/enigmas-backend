@@ -16,6 +16,6 @@ public class ComputerController {
 
   @GetMapping
   public List<ComputerResponse> all() {
-    return catalog.all().stream().map(ComputerResponse::from).toList();
+    return catalog.publicComputers().stream().map(ComputerResponse::from).toList();
   }
 }

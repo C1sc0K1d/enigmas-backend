@@ -1,6 +1,7 @@
 [
   {
     "id": "inno_m1nvl",
+    "tranceFinalPhrase": "A cortina caiu. O papel continua sendo seu.",
     "name": "inno_m1nvl",
     "location": "ESTAÇÃO 01",
     "serial": "PRS-001",
@@ -32,6 +33,7 @@
   },
   {
     "id": "sultao_d",
+    "tranceFinalPhrase": "O ruído continua. Não há ninguém no centro para escutar sua pergunta.",
     "name": "sultao_d",
     "location": "ESTAÇÃO 02",
     "serial": "PRS-002",
@@ -75,6 +77,7 @@
   },
   {
     "id": "tec_la",
+    "tranceFinalPhrase": "Pode mudar de direção. Seu fio continua preso ao mesmo nó.",
     "name": "tec_la",
     "location": "ESTAÇÃO 03",
     "serial": "PRS-003",
@@ -107,6 +110,7 @@
   },
   {
     "id": "nkai_a",
+    "tranceFinalPhrase": "Não tenho outra resposta. Tenho tempo para esperar pela sua.",
     "name": "nkai_a",
     "location": "ESTAÇÃO 04",
     "serial": "PRS-004",
@@ -138,6 +142,7 @@
   },
   {
     "id": "grd_s0nhadr",
+    "tranceFinalPhrase": "Você pode parar de escutar. O chamado não depende dos seus ouvidos.",
     "name": "grd_s0nhadr",
     "location": "ESTAÇÃO 05",
     "serial": "PRS-005",
@@ -175,6 +180,7 @@
   },
   {
     "id": "chma_vva",
+    "tranceFinalPhrase": "O que restou de você ainda serve de alimento.",
     "name": "chma_vva",
     "location": "ESTAÇÃO 06",
     "serial": "PRS-006",
@@ -206,6 +212,7 @@
   },
   {
     "id": "h_colinas",
+    "tranceFinalPhrase": "Continue olhando. A forma que você reconhece é apenas a que consegue suportar.",
     "name": "h_colinas",
     "location": "ESTAÇÃO 07",
     "serial": "PRS-007",
@@ -237,6 +244,7 @@
   },
   {
     "id": "caosra_st",
+    "tranceFinalPhrase": "Pode fazer outra pergunta. Eu ainda estarei usando a voz que você escolheu ouvir.",
     "name": "caosra_st",
     "location": "ESTAÇÃO 08",
     "serial": "PRS-008",
@@ -269,6 +277,7 @@
   },
   {
     "id": "sr_grdabs",
+    "tranceFinalPhrase": "O que afundou não desapareceu. Apenas chegou onde posso alcançá-lo.",
     "name": "sr_grdabs",
     "location": "ESTAÇÃO 09",
     "serial": "PRS-009",
@@ -300,6 +309,7 @@
   },
   {
     "id": "fnt_primdal",
+    "tranceFinalPhrase": "Tudo o que você acrescentar já esteve aqui antes de ter um nome.",
     "name": "fnt_primdal",
     "location": "ESTAÇÃO 10",
     "serial": "PRS-010",
@@ -327,6 +337,55 @@
       "Quantas mudanças seriam necessárias para que você deixasse de reconhecer aquilo que já foi?",
       "Talvez o fim seja apenas o nome que vocês dão ao momento em que reconhecem o começo novamente.",
       "Continue. Quanto mais longe for, mais interessante será vê-lo descobrir para onde estava indo."
+    ]
+  },
+  {
+    "id": "tdo_em1",
+    "tranceFinalPhrase": "Você pode perguntar de novo. Esta resposta já estava em todas as vezes.",
+    "name": "tdo_em1",
+    "location": "—",
+    "serial": null,
+    "welcome": null,
+    "inputFrom": null,
+    "outputTo": null,
+    "commandOnly": true,
+    "firstConnectionMessage": "LOCALIZAÇÃO: —\nDISTÂNCIA: —\nCAMINHO FÍSICO: INEXISTENTE\nTENTANDO CONEXÃO...\n\ntdo_em1 conectado.",
+    "firstConnectionLineDelayMs": 5000,
+    "context": {
+      "riddle": "Você insiste em perguntar de qual lado estou.\n\nIsso pressupõe que existam apenas dois.\n\nNão sou o lugar que deixou.\n\nTambém não sou aquele para onde pretende ir.\n\nPosso separar dois lugares sem possuir largura.\n\nPosso separar dois instantes sem consumir tempo.\n\nTodos me atravessam.\n\nPoucos percebem quando isso acontece.\n\nAquilo que existe entre dois lados sem pertencer verdadeiramente a nenhum deles.",
+      "answer": "LIMIAR",
+      "route": [
+        "sr_grdabs",
+        "grd_s0nhadr",
+        "nkai_a",
+        "fnt_primdal",
+        "h_colinas",
+        "inno_m1nvl",
+        "chma_vva",
+        "caosra_st",
+        "sultao_d",
+        "tec_la",
+        "tdo_em1"
+      ],
+      "successMessage": "A conexão não foi aberta.\nVocê apenas percebeu que sempre esteve dentro dela.\nORIGEM: INDETERMINADA\nDISTÂNCIA: NÃO APLICÁVEL\nSESSÃO REMOTA: ACEITA\nCONTROLE DE RECORRÊNCIA: DISPONÍVE",
+      "successLineDelayMs": 3000
+    },
+    "awakePhrases": [
+      "Lembro do que você ainda vai decidir esquecer.",
+      "Você conta as chegadas. Daqui, nenhuma partida terminou.",
+      "Há um lugar nesta sala que fica do outro lado de todas as paredes.",
+      "Sua pergunta chegou junto da última coisa que você dirá.",
+      "O caminho ficou para trás. Você continua dentro dele."
+    ],
+    "cipher": "encodeAllInOne",
+    "trancePhrases": [
+      "Você pergunta onde estou. Essa pergunta só faz sentido de onde você está.",
+      "Ainda não tivemos esta conversa. Eu me lembro dela.",
+      "Vocês chamam isso de acesso remoto porque ainda acreditam que existe distância entre nós.",
+      "Você está preocupado em voltar ao começo. Já pensou que talvez nunca tenha saído dele?",
+      "Há portas entre lugares. Há outras entre instantes. Vocês construíram nomes diferentes para a mesma coisa.",
+      "Você procura uma saída adiante. Quem lhe disse que ela precisa estar depois?",
+      "Não tente me encontrar. Descubra apenas por que consegue falar comigo."
     ]
   }
 ]

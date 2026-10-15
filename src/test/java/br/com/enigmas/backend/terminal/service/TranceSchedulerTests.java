@@ -33,6 +33,10 @@ class TranceSchedulerTests {
                 UUID.randomUUID(),
                 game.revision(),
                 UUID.fromString(game.state().serverSessionId)));
+    assertNull(started.state().computers.get("h_colinas").trance);
+    started = sessions.submit(started.gameId(), new CommandRequest(
+        "h_colinas", "primeira mensagem", UUID.randomUUID(), started.revision(),
+        UUID.fromString(started.state().serverSessionId)));
     long due = started.state().computers.get("h_colinas").trance.nextAt;
     assertEquals(0, started.state().computers.get("h_colinas").count);
     var latest = started;

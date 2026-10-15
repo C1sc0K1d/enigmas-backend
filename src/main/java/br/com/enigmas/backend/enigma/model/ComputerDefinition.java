@@ -14,11 +14,21 @@ public record ComputerDefinition(
     String outputTo,
     Context context,
     List<String> awakePhrases,
-    List<String> trancePhrases) {
+    List<String> trancePhrases,
+    Boolean commandOnly,
+    String firstConnectionMessage,
+    Integer firstConnectionLineDelayMs,
+    String tranceFinalPhrase) {
+  public ComputerDefinition {
+    // Existing campaign definitions remain publicly accessible unless explicitly hidden.
+    commandOnly = Boolean.TRUE.equals(commandOnly);
+  }
+
   public record Context(
       String riddle,
       String answer,
       List<String> route,
       String successMessage,
-      Boolean revealRouteOnLocalAnswer) {}
+      Boolean revealRouteOnLocalAnswer,
+      Integer successLineDelayMs) {}
 }

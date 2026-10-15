@@ -79,6 +79,8 @@ class ImpossibleFormTests {
                   state.destination = target;
                   engine.submit(state, route[0], sample.get("input").asString());
                   assertTrue(state.computers.get(target).connectionsUnlocked);
+                  while (state.computers.get(route[0]).timedResponse != null)
+                    engine.advanceTimedResponses(state, state.computers.get(route[0]).timedResponse.nextAt);
                   var message = catalog.get(target).context().successMessage();
                   if (message != null) {
                     assertTrue(

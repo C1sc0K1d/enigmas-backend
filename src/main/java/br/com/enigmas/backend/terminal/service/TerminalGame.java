@@ -1,5 +1,6 @@
 package br.com.enigmas.backend.terminal.service;
 
+import br.com.enigmas.backend.enigma.cipher.CipherInputException;
 import br.com.enigmas.backend.enigma.model.ComputerDefinition;
 import br.com.enigmas.backend.enigma.service.*;
 import br.com.enigmas.backend.terminal.model.NetworkState;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class TerminalGame {
   private final PuzzleCatalog catalog;
   private final CipherService ciphers;
+  private final TimedResponses timedResponses;
   private static final String SECRETS =
       "limpa\n"
           + "contexto\n"
@@ -31,6 +33,7 @@ public class TerminalGame {
   public TerminalGame(PuzzleCatalog catalog, CipherService ciphers) {
     this.catalog = catalog;
     this.ciphers = ciphers;
+    this.timedResponses = new TimedResponses(catalog);
   }
 
   public NetworkState initial(String epoch) {
@@ -55,9 +58,11 @@ public class TerminalGame {
 
   public NetworkState submit(
       NetworkState state, String id, String text, DoubleSupplier random, long now) {
-    if (!catalog.contains(id)) throw new IllegalArgumentException("Unknown computer");
+    if (!catalog.contains(id) || catalog.get(id).commandOnly())
+      throw new IllegalArgumentException("Unknown computer");
     if (trim(text).isEmpty()) return state;
     var s = state.computers.get(id);
+    if (s.timedResponse != null) return state;
     String command = trim(text).toLowerCase(Locale.ROOT);
     if (command.equals("limpa") || command.equals("/limpar")) {
       s.entries.clear();
@@ -73,32 +78,26 @@ public class TerminalGame {
           text,
           parts.length > 2
               ? "COMANDO INVÁLIDO."
-              : connect(state, id, parts[0].equals("cncta_ent"), parts[1]),
+              : connect(state, id, parts[0].equals("cncta_ent"), parts[1], now),
           true,
           null);
       return state;
     }
     switch (command) {
       case "/segredos" -> append(s, text, SECRETS, true, null);
-      case "contexto", "dormindo" -> networkCommand(state, id, text, command);
+      case "contexto", "dormindo", "transe" -> networkCommand(state, id, text, command, now);
       case "entd", "sda" -> append(s, text, connection(s, command.equals("entd")), true, null);
       case "lbr_ent", "lbr_sda" ->
-          append(s, text, connect(state, id, command.equals("lbr_ent"), "nenhum"), true, null);
+          append(s, text, connect(state, id, command.equals("lbr_ent"), "nenhum", now), true, null);
       case "acordado" -> {
         s.mode = "acordado";
         s.trance = null;
         append(s, text, "MODO ACORDADO.", true, null);
       }
-      case "transe" -> {
-        s.mode = "transe";
-        startTrance(s, now);
-        append(s, text, "MODO TRANSE.", true, null);
-      }
       default -> {
         var computer = catalog.get(id);
-        if (s.mode.equals("transe")) {
-          startTrance(s, now);
-          append(s, text, "", false, null);
+        if (receiveTranceMessage(state, id, text, now)) {
+          // Dialogue consumes the player message without running the cipher chain.
         } else if (s.mode.equals("dormindo")
             && Boolean.TRUE.equals(computer.context().revealRouteOnLocalAnswer())
             && matches(text, computer.context().answer())) {
@@ -107,16 +106,31 @@ public class TerminalGame {
         } else if (s.mode.equals("acordado")) {
           append(s, text, phrase(state, id, random), false, null);
           s.count++;
-        } else transmit(state, id, text, random);
+        } else transmit(state, id, text, random, now);
       }
     }
     return state;
   }
 
+  public boolean isInputLocked(NetworkState state, String id) {
+    var s = state.computers.get(id);
+    return s != null && s.timedResponse != null;
+  }
+
+  public boolean advanceTimedResponses(NetworkState state, long now) {
+    return timedResponses.advance(state, now);
+  }
+
   public boolean isIgnoredTranceInput(NetworkState state, String id, String text) {
     var s = state.computers.get(id);
-    if (s == null || !s.mode.equals("transe") || s.trance == null) return false;
+    if (s == null) return false;
     String command = trim(text).toLowerCase(Locale.ROOT);
+    var path = outputPath(state, id);
+    if (path.cycle() == null) {
+      var target = state.computers.get(path.computers().getLast());
+      if (command.equals("transe") || target.mode.equals("transe")) s = target;
+    }
+    if (!s.mode.equals("transe") || s.trance == null) return false;
     if (List.of(
             "acordado",
             "dormindo",
@@ -133,9 +147,22 @@ public class TerminalGame {
     return !(parts.length > 1 && (parts[0].equals("cncta_ent") || parts[0].equals("cncta_sda")));
   }
 
-  private void startTrance(ComputerSession s, long now) {
-    s.trance = new TranceProgress();
-    s.trance.nextAt = now + 2000;
+  private boolean receiveTranceMessage(NetworkState state, String origin, String text, long now) {
+    var path = outputPath(state, origin);
+    String target = path.cycle() == null ? path.computers().getLast() : origin;
+    if (!state.computers.get(target).mode.equals("transe")) target = origin;
+    var session = state.computers.get(target);
+    if (!session.mode.equals("transe")) return false;
+    session.trance = new TranceProgress();
+    session.trance.nextAt = now + 2000;
+    if (session.tranceCompleted)
+      session.trance.nextIndex = catalog.get(target).trancePhrases().size();
+    if (!target.equals(origin)) {
+      session.trance.receiver = origin;
+      append(session, text, "", false, origin);
+    }
+    append(state.computers.get(origin), text, "", false, null);
+    return true;
   }
 
   public boolean advanceTrance(NetworkState state, long now) {
@@ -143,10 +170,24 @@ public class TerminalGame {
     for (var entry : state.computers.entrySet()) {
       var s = entry.getValue();
       if (!s.mode.equals("transe") || s.trance == null || now < s.trance.nextAt) continue;
+      if (s.timedResponse != null || (s.trance.receiver != null
+          && isInputLocked(state, s.trance.receiver))) continue;
       var phrases = catalog.get(entry.getKey()).trancePhrases();
-      append(s, "", phrases.get(s.trance.nextIndex++), false, null);
+      boolean finalReply = s.trance.nextIndex >= phrases.size();
+      String line = finalReply
+          ? catalog.get(entry.getKey()).tranceFinalPhrase()
+          : phrases.get(s.trance.nextIndex++);
+      append(s, "", line, false, null);
+      String receiver = s.trance.receiver;
+      // Remote dialogue follows the original caller only while the connection still exists.
+      if (receiver != null && state.computers.containsKey(receiver)
+          && outputPath(state, receiver).computers().contains(entry.getKey()))
+        append(state.computers.get(receiver), "", entry.getKey() + ": " + line, false, entry.getKey());
       s.count++;
-      if (s.trance.nextIndex == phrases.size()) s.trance = null;
+      if (finalReply || s.trance.nextIndex == phrases.size()) {
+        s.tranceCompleted = true;
+        s.trance = null;
+      }
       else s.trance.nextAt = now + 2000;
       changed = true;
     }
@@ -158,7 +199,7 @@ public class TerminalGame {
         + Objects.toString(input ? s.inputFrom : s.outputTo, "nenhum");
   }
 
-  private String connect(NetworkState state, String id, boolean input, String target) {
+  private String connect(NetworkState state, String id, boolean input, String target, long now) {
     var s = state.computers.get(id);
     if (!s.connectionsUnlocked) return "Chave não encontrada ou não digitada nos ultimos 30 dias.";
     if (!target.equals("nenhum") && !state.computers.containsKey(target))
@@ -180,17 +221,34 @@ public class TerminalGame {
       state.computers.get(source).outputTo = destination;
       state.computers.get(destination).inputFrom = source;
     }
+    if (!target.equals("nenhum")) {
+      var targetDefinition = catalog.get(target);
+      var targetSession = state.computers.get(target);
+      if (targetDefinition.firstConnectionMessage() != null && !targetSession.connectionIntroduced) {
+        targetSession.connectionIntroduced = true;
+        return timedResponses.start(state, id, target, false, now);
+      }
+    }
     return connection(s, input);
   }
 
-  private void networkCommand(NetworkState state, String origin, String text, String command) {
+  private record OutputPath(List<String> computers, String cycle) {}
+
+  private OutputPath outputPath(NetworkState state, String origin) {
     var route = new ArrayList<String>();
     String current = origin;
     while (current != null && !route.contains(current)) {
       route.add(current);
       current = state.computers.get(current).outputTo;
     }
-    String cycle = current;
+    return new OutputPath(route, current);
+  }
+
+  private void networkCommand(
+      NetworkState state, String origin, String text, String command, long now) {
+    var path = outputPath(state, origin);
+    var route = path.computers();
+    String cycle = path.cycle();
     if (command.equals("dormindo")) {
       for (int i = 0; i < route.size(); i++) {
         var s = state.computers.get(route.get(i));
@@ -205,10 +263,24 @@ public class TerminalGame {
           true,
           null);
     } else if (cycle != null) append(state.computers.get(origin), text, cycle(cycle), true, null);
-    else {
+    else if (command.equals("transe")) {
+      String target = route.getLast();
+      var s = state.computers.get(target);
+      if (!s.mode.equals("transe")) {
+        s.mode = "transe";
+        s.trance = null;
+        s.tranceCompleted = false;
+      }
+      if (!target.equals(origin)) {
+        append(s, text, "MODO TRANSE.", true, route.get(route.size() - 2));
+      }
+      append(state.computers.get(origin), text,
+          target.equals(origin) ? "MODO TRANSE." : target + ": MODO TRANSE.", true, null);
+    } else {
       state.destination = route.getLast();
       var c = catalog.get(state.destination);
-      String output = c.context().riddle() + "\n\n" + route(c);
+      String riddle = c.context().riddle();
+      String output = (riddle == null || riddle.isBlank() ? "" : riddle + "\n\n") + route(c);
       if (!state.destination.equals(origin))
         append(
             state.computers.get(state.destination),
@@ -220,10 +292,11 @@ public class TerminalGame {
     }
   }
 
-  private void transmit(NetworkState state, String origin, String text, DoubleSupplier random) {
+  private void transmit(NetworkState state, String origin, String text, DoubleSupplier random, long now) {
     var visited = new ArrayList<String>();
     var trace = new ArrayList<Trace>();
     String current = origin, source = null, payload = text, notice = "";
+    boolean cipherRejected = false;
     while (current != null) {
       if (visited.contains(current)) {
         notice = cycle(current);
@@ -238,7 +311,22 @@ public class TerminalGame {
         break;
       }
       boolean awake = s.mode.equals("acordado");
-      String output = awake ? phrase(state, current, random) : ciphers.encode(c.cipher(), payload);
+      // An unfinished puzzle has no fallback cipher or key.
+      if (!awake && c.cipher() == null) {
+        notice = "TRANSMISSÃO INTERROMPIDA: " + current + " não responde.";
+        break;
+      }
+      String output;
+      try {
+        output = awake ? phrase(state, current, random) : ciphers.encode(c.cipher(), payload);
+      } catch (CipherInputException error) {
+        // Record the refusal as a notice, never as cipher output or input for the next computer.
+        notice = error.getMessage();
+        cipherRejected = true;
+        s.count++;
+        if (!current.equals(origin)) append(s, payload, notice, true, source);
+        break;
+      }
       trace.add(new Trace(current, output, !awake));
       s.count++;
       boolean correctRoute = visited.equals(context.route());
@@ -251,13 +339,19 @@ public class TerminalGame {
                       context.successMessage(), "DESTINO ALCANÇADO: " + current + ".")
                   : route(c)
               : "";
-      if (solved) s.connectionsUnlocked = true;
+      if (solved) {
+        s.connectionsUnlocked = true;
+        if (context.successMessage() != null)
+          response = timedResponses.start(state, origin, current, true, now);
+      }
       if (!current.equals(origin)) {
         var outputParts = new ArrayList<Part>();
         outputParts.add(new Part(output, !awake));
         if (!response.isEmpty()) outputParts.add(new Part("\n" + response));
         append(s, payload, outputParts, false, source);
       }
+      // A command-only terminal has no page; its dialogue must reach the sender.
+      if (awake && c.commandOnly()) break;
       if (awake) {
         notice = "TRANSMISSÃO INTERROMPIDA: " + current + " está acordado.";
         break;
@@ -290,7 +384,7 @@ public class TerminalGame {
     if (!notice.isEmpty())
       output.add(
           new Part((output.stream().anyMatch(p -> !p.text().isEmpty()) ? "\n" : "") + notice));
-    if (notice.startsWith("TRANSMISSÃO INTERROMPIDA:"))
+    if (cipherRejected || notice.startsWith("TRANSMISSÃO INTERROMPIDA:"))
       append(state.computers.get(origin), text, notice, false, null);
     else append(state.computers.get(origin), text, output, false, null);
   }
@@ -302,7 +396,7 @@ public class TerminalGame {
   }
 
   private boolean matches(String actual, String expected) {
-    return normalize(actual).equals(normalize(expected));
+    return expected != null && normalize(actual).equals(normalize(expected));
   }
 
   private String normalize(String text) {

@@ -67,12 +67,14 @@ public class GameSessionService {
       throw new ResponseStatusException(
           HttpStatus.CONFLICT, "A partida reiniciou. Atualize a sessão.");
     if (command.requestId().toString().equals(row.lastRequestId)) return response(row, state);
-    if (game.isIgnoredTranceInput(state, command.computerId(), command.text()))
+    if (game.isInputLocked(state, command.computerId())
+        || game.isIgnoredTranceInput(state, command.computerId(), command.text()))
       return response(row, state);
     if (row.revision != command.revision())
       throw new ResponseStatusException(
           HttpStatus.CONFLICT, "A sessão mudou. Atualize antes de enviar novamente.");
-    if (!catalog.contains(command.computerId()))
+    if (!catalog.contains(command.computerId())
+        || catalog.get(command.computerId()).commandOnly())
       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Computador não encontrado.");
     game.submit(state, command.computerId(), command.text());
     trimHistory(state);
@@ -90,7 +92,9 @@ public class GameSessionService {
     // Never revive an old cycle or mutate a dormant game merely because the timer ran.
     if (!row.epoch.equals(identity.id())) return;
     var state = mapper.readValue(row.snapshot, NetworkState.class);
-    if (!game.advanceTrance(state, now)) return;
+    boolean changed = game.advanceTimedResponses(state, now);
+    changed |= game.advanceTrance(state, now);
+    if (!changed) return;
     trimHistory(state);
     row.snapshot = mapper.writeValueAsString(state);
     row.revision++;

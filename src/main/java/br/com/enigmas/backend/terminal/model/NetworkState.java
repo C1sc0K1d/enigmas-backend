@@ -11,6 +11,10 @@ public class NetworkState {
 
   public static class ComputerSession {
     public boolean connectionsUnlocked;
+
+    // Kept independently of history so clearing messages never repeats the introduction.
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public boolean connectionIntroduced;
     public String mode = "acordado";
     public String inputFrom;
     public String outputTo;
@@ -21,11 +25,29 @@ public class NetworkState {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public TranceProgress trance;
+
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    public boolean tranceCompleted;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public TimedResponseProgress timedResponse;
+  }
+
+  public static class TimedResponseProgress {
+    public String computerId;
+    public boolean success;
+    public int nextIndex;
+    public long nextAt;
+    public int entryId;
+    public Integer mirroredEntryId;
   }
 
   public static class TranceProgress {
     public int nextIndex;
     public long nextAt;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String receiver;
   }
 
   @JsonInclude(JsonInclude.Include.NON_NULL)

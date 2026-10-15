@@ -69,5 +69,23 @@
     "route": ["chma_vva", "tec_la", "fnt_primdal"],
     "input": "RRXXXIIIIZZNNNRRRRXX",
     "answer": "RETORNO"
+  },
+  {
+    "id": "tdo_em1",
+    "route": [
+      "sr_grdabs",
+      "grd_s0nhadr",
+      "nkai_a",
+      "fnt_primdal",
+      "h_colinas",
+      "inno_m1nvl",
+      "chma_vva",
+      "caosra_st",
+      "sultao_d",
+      "tec_la",
+      "tdo_em1"
+    ],
+    "input": "ACAAAYBWNGNENCNADYKDKBKZTXACAARYKPUNNENCNARYNSNQPOQNJL",
+    "answer": "LIMIAR"
   }
 ]

@@ -1,5 +1,6 @@
 package br.com.enigmas.backend.enigma.service;
 
+import br.com.enigmas.backend.enigma.cipher.AllInOneCipher;
 import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Pattern;
@@ -11,6 +12,7 @@ public class CipherService {
 
   public String encode(String cipher, String text) {
     return switch (cipher) {
+      case "encodeAllInOne" -> AllInOneCipher.encode(text);
       case "encodeCaesar" -> caesar(text, 3);
       case "encodePrimordialSource" -> primordialSource(text);
       case "encodeCrawlingChaos" -> words(text, this::crawlingChaos);

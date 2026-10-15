@@ -20,7 +20,9 @@ public class PuzzleCatalog {
       if (!ids.add(computer.id())
           || computer.awakePhrases().isEmpty()
           || computer.trancePhrases() == null
-          || computer.trancePhrases().size() != 6)
+          || computer.trancePhrases().isEmpty()
+          || computer.tranceFinalPhrase() == null
+          || computer.tranceFinalPhrase().isBlank())
         throw new IllegalStateException("Invalid puzzle catalog");
     }
     for (var c : computers) {
@@ -31,6 +33,10 @@ public class PuzzleCatalog {
 
   public List<ComputerDefinition> all() {
     return computers;
+  }
+
+  public List<ComputerDefinition> publicComputers() {
+    return computers.stream().filter(c -> !c.commandOnly()).toList();
   }
 
   public ComputerDefinition get(String id) {

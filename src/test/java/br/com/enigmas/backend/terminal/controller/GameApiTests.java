@@ -69,6 +69,13 @@ class GameApiTests {
     command.put("requestId", UUID.randomUUID().toString());
     command.put("serverSessionId", game.at("/state/serverSessionId").asString());
     var started = json(request("POST", "/games/current/commands", id, command));
+    assertTrue(started.at("/state/computers/h_colinas/trance").isMissingNode());
+    sessions.advanceTrance(System.currentTimeMillis() + 10000);
+    assertEquals(started, json(request("GET", "/games/current", id, null)));
+    command.put("requestId", UUID.randomUUID().toString());
+    command.put("revision", started.get("revision").asLong());
+    command.put("text", "primeira mensagem");
+    started = json(request("POST", "/games/current/commands", id, command));
     long due = started.at("/state/computers/h_colinas/trance/nextAt").asLong();
     var stream =
         http.send(
@@ -87,7 +94,7 @@ class GameApiTests {
       assertEquals(1, latest.at("/state/computers/h_colinas/trance/nextIndex").asInt());
       assertEquals(
           "Você parece muito seguro daquilo que está vendo.",
-          latest.at("/state/computers/h_colinas/entries/1/output").asString());
+          latest.at("/state/computers/h_colinas/entries/2/output").asString());
       command.put("requestId", UUID.randomUUID().toString());
       command.put("text", "ignore this even with an old revision");
       var ignored = request("POST", "/games/current/commands", id, command);
@@ -220,16 +227,77 @@ class GameApiTests {
   }
 
   @Test
+  void timedOutputPersistsRejectsCommandsAndBroadcastsEachLine() throws Exception {
+    var joined = sessions.reset();
+    String id = joined.gameId();
+    // Set up an unlocked caller without bypassing the command endpoint under test.
+    joined.state().computers.get("tec_la").connectionsUnlocked = true;
+    var row = repository.findById(id).orElseThrow();
+    row.snapshot = mapper.writeValueAsString(joined.state());
+    repository.saveAndFlush(row);
+    var command = new LinkedHashMap<String, Object>();
+    command.put("computerId", "tec_la");
+    command.put("text", "cncta_sda tdo_em1");
+    command.put("revision", joined.revision());
+    command.put("requestId", UUID.randomUUID().toString());
+    command.put("serverSessionId", joined.state().serverSessionId);
+    var started = json(request("POST", "/games/current/commands", id, command));
+    assertEquals("LOCALIZAÇÃO: —", started.at("/state/computers/tec_la/entries/0/output").asString());
+    long due = started.at("/state/computers/tec_la/timedResponse/nextAt").asLong();
+    assertTrue(due > 0);
+    assertEquals(started, json(request("GET", "/games/current", id, null)));
+    var stream = http.send(HttpRequest.newBuilder(
+        URI.create("http://localhost:" + port + "/api/games/events")).GET().build(),
+        HttpResponse.BodyHandlers.ofInputStream());
+    try (var reader = new java.io.BufferedReader(new java.io.InputStreamReader(
+        stream.body(), java.nio.charset.StandardCharsets.UTF_8))) {
+      assertEquals("event:changed", nextEvent(reader));
+      sessions.advanceTrance(due - 1);
+      assertEquals(started, json(request("GET", "/games/current", id, null)));
+      sessions.advanceTrance(due);
+      assertEquals("event:changed", nextEvent(reader));
+      var latest = json(request("GET", "/games/current", id, null));
+      assertEquals("LOCALIZAÇÃO: —\nDISTÂNCIA: —",
+          latest.at("/state/computers/tec_la/entries/0/output").asString());
+      command.put("requestId", UUID.randomUUID().toString());
+      command.put("text", "limpa");
+      // Even a stale client cannot clear history or queue an action during delivery.
+      assertEquals(latest, json(request("POST", "/games/current/commands", id, command)));
+      var reset = mapper.readTree(mapper.writeValueAsString(sessions.reset()));
+      assertEquals("event:changed", nextEvent(reader));
+      sessions.advanceTrance(due + 100000);
+      assertEquals(reset, json(request("GET", "/games/current", id, null)));
+    } finally {
+      sessions.reset();
+    }
+  }
+
+  @Test
+  void hiddenComputerRejectsDirectCommandsWithoutChangingTheGame() throws Exception {
+    var game = json(request("POST", "/games", null, null));
+    String id = game.get("gameId").asString();
+    var command = Map.of(
+        "computerId", "tdo_em1", "text", "contexto",
+        "revision", game.get("revision").asLong(),
+        "requestId", UUID.randomUUID().toString(),
+        "serverSessionId", game.at("/state/serverSessionId").asString());
+    assertEquals(404, request("POST", "/games/current/commands", id, command).statusCode());
+    assertEquals(game, json(request("GET", "/games/current", id, null)));
+  }
+
+  @Test
   void catalogDoesNotExposeSolutions() throws Exception {
     var response = request("GET", "/computers", null, null);
     assertEquals(200, response.statusCode());
     assertEquals(10, json(response).size());
     for (var c : json(response)) {
+      assertNotEquals("tdo_em1", c.get("id").asString());
       assertFalse(c.has("context"));
       assertFalse(c.has("answer"));
       assertFalse(c.has("cipher"));
       assertFalse(c.has("awakePhrases"));
       assertFalse(c.has("trancePhrases"));
+      assertFalse(c.has("tranceFinalPhrase"));
     }
   }
 

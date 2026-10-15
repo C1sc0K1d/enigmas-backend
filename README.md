@@ -58,7 +58,17 @@ Controllers delegate to services. Services own rules and transaction boundaries;
 
 Game commands, riddles, answers, and dialogue stay in Portuguese so the examples match what players see. The setup instructions and technical explanations are in English.
 
-The ten puzzle definitions live in src/main/resources/puzzles/computers.json. They are versioned campaign content, not editable database records. Change riddles, answers, routes, initial links, awake dialogue, and trance sequences there; implement cipher changes in CipherService. Both ends of each initial link must agree. Restart the backend after changing the campaign.
+The campaign definitions live in src/main/resources/puzzles/computers.json. They are versioned campaign content, not editable database records. Change riddles, answers, routes, initial links, awake dialogue, and trance sequences there; implement cipher changes in CipherService. Both ends of each initial link must agree. Restart the backend after changing the campaign.
+
+Command-only computers use commandOnly: true in the catalog and are excluded from /api/computers. They can be connection targets, but never player command origins. Their optional firstConnectionMessage is shown once per shared game, tracked in the persisted snapshot independently of history. Resetting the game clears that flag.
+
+The tdo_em1 terminal has its eleven-computer route, five awake replies and All-in-One Cipher configured. The cipher lives in enigma/cipher/AllInOneCipher.java and is selected by encodeAllInOne in the catalog. It normalizes Latin accents and case, transforms words independently and preserves separators. Messages with exactly one alphabet letter raise CipherInputException; the game records and returns the refusal without forwarding it or breaking connections. Single-letter words inside longer messages are allowed.
+
+Its riddle asks what exists between two sides without belonging to either. The answer is LIMIAR, accepted only while asleep after its exact eleven-computer route. An exact answer on a shorter route reveals the required path; a longer phrase containing the answer does not unlock it. Its completion message is delivered line by line, three seconds apart. Its trance sequence contains seven lines, delivered in order.
+
+Timed introduction and completion output is handled by TimedResponses. Campaign definitions configure firstConnectionLineDelayMs (5000 for tdo_em1) and context.successLineDelayMs (3000). The first line is immediate; the caller stores the next index, deadline and history entry identifiers in timedResponse. Remaining dialogue stays in the private catalog until delivered. Success lines update both the caller and destination entries.
+
+While timedResponse exists, all input at that terminal is ignored before clearing history or recording commands, including stale requests. The Angular controls reflect this server-owned lock. The existing scheduler advances both timed responses and trance, persists changes and emits SSE after commit. Delays do not cause catch-up bursts; reloads preserve delivery and resets clear it. Trance output to a locked terminal waits until timed delivery finishes.
 
 ## API contract
 
@@ -160,10 +170,12 @@ The route to `sultao_d` also passes through this cipher, so its inscription has 
 
 ## Trance dialogue
 
-Each computer has six ordered `trancePhrases` in the private campaign catalog. `transe` starts a sequence at that computer. The first line is due after two seconds; the next five follow at two-second intervals. Once finished, the terminal stays in trance until a normal player message starts another round.
+Each computer has ordered `trancePhrases` and one `tranceFinalPhrase` in the private campaign catalog. Public computers have six sequence lines; tdo_em1 has seven. The `transe` command follows output links and arms the last computer, but schedules no dialogue. A subsequent ordinary player message starts the sequence, with the first line due after two seconds and the remaining lines at two-second intervals.
 
-While a sequence is running, ordinary messages and repeated `transe` commands are ignored without changing history or revision. Control commands still work. `acordado`, a propagated `dormindo`, and the master reset cancel pending lines. `limpa` only clears history. Incoming cipher transmissions stop at a terminal in trance and never trigger its dialogue.
+After completion, `tranceCompleted` is persisted in the shared snapshot. Every new message schedules just the fixed final phrase, again after two seconds. Reloads, clearing history and repeating the mode command do not replay the sequence. Leaving trance and entering again resets completion; a game reset clears it too. Remote ordinary messages are delivered directly to the final computer in trance, without cipher transformation. The sender receives both the initial sequence and later fixed replies.
+
+While a sequence is running, ordinary messages and repeated `transe` commands are ignored without changing history or revision. Control commands still work. `acordado`, a propagated `dormindo`, and the master reset cancel pending lines. `limpa` only clears history. Cipher transmissions that encounter an intermediate terminal in trance stop there and never trigger its dialogue.
 
 `TranceScheduler` checks the shared game every 250 ms. `GameSessionService` locks the session row, advances due lines, saves the snapshot, and notifies SSE listeners after commit. Each terminal stores its next line and deadline in the optional `trance` field. Delays never cause a burst of catch-up messages. The browser only displays the shared state; reloading or closing a tab does not create or cancel a sequence.
 
-Automated tests normally disable the scheduler with `game.trance.enabled=false` and advance time explicitly. A separate integration test enables the real scheduler against its own H2 database. Tests cover all 60 lines, messages sent mid-sequence, replay, interruption, reset, SSE delivery, and UI rendering. The historical parity fixtures include the new `transe` entry in the command list.
+Automated tests normally disable the scheduler with `game.trance.enabled=false` and advance time explicitly. A separate integration test enables the real scheduler against its own H2 database. Tests cover the public sequences and the seven remote tdo_em1 lines, waiting for input, messages sent mid-sequence, fixed final replies, interruption, reset, SSE delivery, and UI rendering. The historical parity fixtures include the new `transe` entry in the command list. Remote trance progress also stores its caller, so reloads do not lose reply delivery. Each tick records the line at its destination and relays it to the caller only if the output path still reaches that destination. Repeated starts and ordinary messages from an active caller are ignored; control commands remain available.
